@@ -1,0 +1,21 @@
+.arash table td {
+  border-color: #96D4D4;
+}
+
+.arash table td, th {
+border: 1px dotted #96D4D4 !important;
+padding: 10px;
+    text-align:center !important;
+}
+.arash table th {
+color:#f6f6f6;
+    background :cornflowerblue;
+}
+
+.arash table tr:nth-child(even)td {
+background-color: #fff;
+}
+
+.arash table tr:nth-child(odd) td{
+background-color: #ddd;
+}

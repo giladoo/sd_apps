@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sd_apps_settings_admins,sd_apps.settings,model_sd_apps_settings,sd_apps.group_sd_apps_admins,1,1,1,1
+access_sd_apps_settings_users,sd_apps.settings,model_sd_apps_settings,sd_apps.group_sd_apps_users,1,0,0,0
+access_sd_apps_settings_public,sd_apps.settings,model_sd_apps_settings,base.group_public,1,0,0,0
+access_sd_apps_settings_all_users,sd_apps.settings,model_sd_apps_settings,base.group_user,1,0,0,0
+
