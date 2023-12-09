@@ -38,7 +38,7 @@
 
         'web.assets_frontend': [
 
-            # 'sd_apps/static/src/css/my-style.scss',
+             'sd_apps/static/src/css/my-style.scss',
             # 'sd_apps/static/src/js/website_form_sd_apps.js'
         ],
         'web.assets_backend': [
