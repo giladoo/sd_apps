@@ -30,6 +30,7 @@ class sd_apps_settings(models.Model):
 
     name = fields.Char(required=True, translate=True)
     active_link = fields.Boolean(default=False)
+    app_or_link = fields.Boolean(default=True)
     link = fields.Char()
     target = fields.Selection([('_blank', 'New Tab'), ('_self', 'Same Tab')], default='_self')
     priority = fields.Integer(default=10)
@@ -38,6 +39,8 @@ class sd_apps_settings(models.Model):
     has_access_group = fields.Integer(compute='_has_access_group', default=0)
 
     image = fields.Image(string='Logo')
+    color = fields.Integer()
+    parent_id = fields.Many2one('sd_apps.settings')
 
     def _has_access_group(self):
 

@@ -16,10 +16,13 @@
                     <field name="sequence" widget="handle"/>
                     <field name="image" widget="image" class="oe_avatar sd_apps_dash" groups="base.group_user"/>
                     <field name="name"/>
-                    <field name="active_link" widget="boolean_toggle"/>
-                    <field name="link"/>
+                    <field name="active_link" widget="boolean_toggle" />
+                    <field name="link" />
+                    <field name="parent_id"/>
                     <field name="target"/>
                     <field name="access_group"/>
+                    <field name="color" widget="color_picker"/>
+
 <!--                    <field name="priority"/>-->
 
                 </tree>
@@ -32,6 +35,7 @@
             <field name="arch" type="xml">
                 <kanban create="0" edit="0" delete="0">
                     <field name="name"/>
+                    <field name="color"/>
                     <field name="link"/>
                     <field name="image"/>
                     <field name="sequence"/>
@@ -40,8 +44,9 @@
                     <templates>
                         <t t-name="kanban-box" t-if="record.has_access_group.value == 1" >
 <!--                        <t t-name="kanban-box" t-if="1" >-->
-                            <div class="o_kanban_record_has_image_fill o_hr_kanban_record shadow rounded sd_apps_dash">
-                                <a t-att-href="record.link.value" t-att-target="record.link.target">
+                            <div t-attf-class="mb-1 o_kanban_record_has_image_fill o_hr_kanban_record shadow rounded sd_apps_dash oe_kanban_color_#{record.color.value}"
+                            style="height:121px;">
+                                <a t-att-href="record.link.value ? record.link.value : '/web#cids=1'" t-att-target="record.link.target">
                                     <span class="sd_link"> </span>
                                 </a>
                                 <field name="image" widget="image"
@@ -51,6 +56,7 @@
                                     <div style="text-align:center;">
                                         <strong>
                                             <t t-esc="record.name.value"/>
+                                            <t t-esc="record.color.value"/>
                                         </strong>
                                         <div t-if="record.sequence.value"
                                              t-field="sequence.value"
@@ -100,24 +106,28 @@
             <field name="name">Dashboard</field>
             <field name="res_model">sd_apps.settings</field>
             <field name="view_mode">kanban</field>
-            <field name="domain">[('active_link', '=', True)]</field>
+            <field name="domain">[('active_link', '=', True),('parent_id', '=', 1)]</field>
             <field name="view_ids" eval="[(5, 0, 0),
                 (0, 0, {'view_mode': 'kanban', 'view_id': ref('sd_apps_settings_kanban')}),
                 ]"/>
         </record>
 
+        <record model="ir.actions.client" id="client_apps">
+            <field name="name">sd_apps.settings</field>
+            <field name="tag">sd_apps.client_apps</field>
+        </record>
         <!-- ==================================================  Menu ====================-->
 
 
-        <!--        <menuitem name="sd_apps List" id="sd_apps.services_list" parent="sd.services"-->
-        <!--                  action="sd_apps.action_window_services"/>-->
-
-
-
-        <menuitem name="Dashboard"
+        <menuitem name="Apps"
                   sequence="0"
                   id="sd_apps.kanban"
-                  action="sd_apps.action_window_kanban"/>
+                  action="sd_apps.client_apps"/>
+
+<!--        <menuitem name="Dashboard new"-->
+<!--                    id="sd_apps.client_apps_menu"-->
+<!--                  action="sd_apps.action_window_kanban"/>-->
+
 
         <menuitem name="Configuration"
                   id="sd_apps.settings"

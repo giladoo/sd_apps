@@ -39,6 +39,8 @@
                                                  t-class="sd_apps_img"
                                                  t-options="{'widget': 'image', 'img_style': 'max-height:30%;max-width:20px;' }"/>
                                             <t t-esc="app.name"/>
+                                            <t t-esc="app.target"/>
+<!--                                            <div style="width:20px;background:red" t-esc="app.color"></div>-->
 <!--                                        </button>-->
                                         </div>
 

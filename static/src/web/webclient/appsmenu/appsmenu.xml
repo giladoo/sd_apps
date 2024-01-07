@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+    <t t-name="sd_apps.navbar_appsmenu" owl="1">
+        <div>AppsHome</div>
+<!--        <t t-log="'apps2:', props.apps, "></t>-->
+        <div class="row mx-1">
+            <div >
+                <a t-attf-href="/web#menu_id={{props.apps[0].id}}" class="o_navbar_apps_menu p-2">
+<!--                <a t-att-href="getMenuItemHref(133)"  class="o_navbar_apps_menu p-2">-->
+                    <i class="fa fa-th"/>
+                </a>
+            </div >
+            <div class="mx-3 o_navbar_apps_menu p-2" t-on-click="onBackBtn">
+<!--                <a t-attf-href="/web#menu_id={{props.apps[props.apps.length - 2].id}}" class="o_navbar_apps_menu p-2">-->
+
+<!--                <a t-att-href="getMenuItemHref(apps[apps.length - 2])" >-->
+                    <i class="fa fa-arrow-left"/>
+<!--                </a>-->
+            </div>
+        </div>
+    </t>
+</templates>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="sd_apps.client_apps" owl="1">
+        <div>
+            <ClientNav nav="state.nav" onClick="onClick"/>
+            <div class="row mx-2">
+                <t t-foreach="state.data" t-as="card" t-key="card.id">
+                    <ClientCard card="card" onClick="onClick"/>
+                </t>
+            </div>
+<!--            <div class="cookie_display border border-danger mt-5 mx-2" style="direction:ltr; text-align: left"></div>-->
+        </div>
+    </t>
+</templates>

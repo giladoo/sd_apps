@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+    <t t-name="sd_apps.client_nav" owl="1">
+        <div class="client_nav p-3" >
+            <i class="fa fa-home mx-2 pointer" t-on-click="()=>props.onClick('home', {id: 1})"></i>
+<!--            <t t-set="props.nav"></t>-->
+<!--                <t t-log="props.nav.length"></t>-->
+            <t t-if="props.nav" t-foreach="props.nav" t-as="nav" t-key="nav">
+<!--                <t t-log="'nav', nav"></t>-->
+                <i class="fa fa-angle-right mx-2"></i>
+                <span t-if="props.nav.length > nav_index + 1" class="pointer mx-2" t-on-click="()=>props.onClick('up', nav)">
+                    <img  class=" rounded shadow-sm" t-attf-src="/web/image?model=sd_apps.settings&amp;id={{nav.id}}&amp;field=image" />
+<!--                    <i t-else="" class="fa fa-circle"></i>-->
+                </span>
+                <span t-else="" class="mx-2" >
+                    <img  class=" rounded shadow-sm" t-attf-src="/web/image?model=sd_apps.settings&amp;id={{nav.id}}&amp;field=image" />
+<!--                    <i t-else="" class="fa fa-circle"></i>-->
+                </span>
+            </t>
+        </div>
+
+    </t>
+</templates>

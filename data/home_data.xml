@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+<!--         <data>-->
+
+
+        <record id="record_0" model="sd_apps.settings">
+            <field name="name">Home</field>
+            <field name="active_link">True</field>
+        </record>
+
+
+
+         </data>
+</odoo>
