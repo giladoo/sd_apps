@@ -4,6 +4,8 @@ import { registry } from "@web/core/registry"
 import { ClientCard } from "./client_card"
 import { ClientNav } from "./client_nav"
 import { useService } from "@web/core/utils/hooks"
+import { session } from "@web/session";
+
 const { Component,  } = owl
 const { xml } = owl.tags
 const { useState, onMounted, onWillStart,  onWillUnmount } = owl.hooks;
@@ -16,6 +18,7 @@ export class ClientApps extends Component{
         this.orm = useService("orm")
         this.router = useService("router")
         this.cookie = useService("cookie")
+        this.rpc = useService("rpc")
 
         this.state = useState({
             data: [],
@@ -26,12 +29,15 @@ export class ClientApps extends Component{
         })
         onWillStart(async ()=>{
 
-            console.log('on will start: A', )
+//            console.log('on will start: A', )
+//            this.rpc('/web/session/get_session_info').then(function (session) {
+//            console.log('on will start: A1', session)
+//            })
             if (this.cookie.current.appsStateData ){
                 try{
                     this.state.data = JSON.parse(this.cookie.current.appsStateData)
                     this.state.nav = JSON.parse(this.cookie.current.appsStateNav)
-                                console.log('on will start: AA', this.state.data)
+//                                console.log('on will start: AA', this.state.data)
 
                     this.state.data.map(rec=>{
                         rec.link = rec.link ? decodeURIComponent(rec.link) : rec.link
@@ -44,7 +50,7 @@ export class ClientApps extends Component{
                         return decodeURIComponent(rec)
                     })
                 }catch (error) {
-                    console.log('on will start B: error:', error)
+//                    console.log('on will start B: error:', error)
                     await this.onClickCard('home', {id: 1})
                 }
             }else{
@@ -55,15 +61,16 @@ export class ClientApps extends Component{
         this.onClick = this.onClickCard.bind(this);
     }
     async onClickCard(direction, card,){
-        console.log('onClickCard: A',  direction, card.id)
+//        console.log('onClickCard: A',  direction, card.id)
 
         let data;
         let domain = []
-        const fields = ['name', 'color','link','access_group']
+        const fields = ['name', 'color','link','access_group', 'target']
         if (typeof card == 'object' && card.link){
-            console.log(this, card.link)
-//            this.router.redirect(card.link)
-            this.router.redirect(decodeURIComponent(card.link))
+//            this.router.redirect(decodeURIComponent(card.link))
+//            window.open(decodeURIComponent(card.link), '_blank');
+                console.log('target:', card.target, card.link)
+            window.open(decodeURIComponent(card.link), card.target);
         }else{
             if ( direction == 'home' ){
                 domain =  [['parent_id', '=', 1]]

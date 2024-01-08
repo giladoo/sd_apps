@@ -11,9 +11,11 @@
                 </a>
             </div >
             <div class="mx-3 o_navbar_apps_menu p-2" t-on-click="onBackBtn">
+<!--            <div class="mx-3 o_navbar_apps_menu p-2" >-->
 <!--                <a t-attf-href="/web#menu_id={{props.apps[props.apps.length - 2].id}}" class="o_navbar_apps_menu p-2">-->
 
 <!--                <a t-att-href="getMenuItemHref(apps[apps.length - 2])" >-->
+
                     <i class="fa fa-arrow-left"/>
 <!--                </a>-->
             </div>

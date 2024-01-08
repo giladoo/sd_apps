@@ -35,10 +35,10 @@ export class AppsHome extends Component {
     let menu_id = this.env.services.router.current.hash.menu_id
     let pushState = this.env.services.router.current.hash.pushState
 //    console.log('pushState', pushState, 'action', action,  'menu_id', menu_id, this.env.services.router)
-    console.log('bus', this.env.bus, 'ROUTE_CHANGE', this.env.bus.ROUTE_CHANGE)
+//    console.log('bus', this.env.bus, 'ROUTE_CHANGE', this.env.bus.ROUTE_CHANGE)
 
 
-    this.env.bus.on("ROUTE_CHANGE", this, this.pageUpdated);
+//    this.env.bus.on("ROUTE_CHANGE", this, this.pageUpdated);
 //    this.env.bus.on("MENUS:APP-CHANGED", this, this.renderAndAdapt);
 
     this.state = useState({
@@ -74,7 +74,9 @@ export class AppsHome extends Component {
         }
     }
     onBackBtn(e){
-        console.log('onBackBtn, router.current', this.router)
+        console.log('onBackBtn, router.current',)
+        window.history.back()
+        return
         let lastPage, menu_id, action, url = ''
         if (this.router.current.hash.id){
             this.state.current.pop()
