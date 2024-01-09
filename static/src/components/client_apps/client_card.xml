@@ -13,7 +13,7 @@
                     </div>
                     <div class="col "></div>
                 </div>
-                <div class="client_card_title  px-1" t-esc="props.card.name"></div>
+                <div class="client_card_title font-weight-bold px-1" t-esc="props.card.name"></div>
             </div>
         </div>
     </t>

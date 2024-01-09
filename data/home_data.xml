@@ -8,6 +8,12 @@
             <field name="name">Home</field>
             <field name="active_link">True</field>
         </record>
+<!--        <record id="record_1" model="sd_apps.settings">-->
+<!--            <field name="name">Exit</field>-->
+<!--            <field name="active_link">True</field>-->
+<!--            <field name="prent_id">1</field>-->
+<!--            <field name="link">/web/session/logout</field>-->
+<!--        </record>-->
 
 
 
