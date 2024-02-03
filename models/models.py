@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 import datetime
+import json
 from datetime import  timedelta
 # import random
 
-from odoo import models, fields, api
+from odoo import models, fields, api, tools
 
 from colorama import Fore
 
@@ -53,4 +54,29 @@ class sd_apps_settings(models.Model):
                 rec.has_access_group = 1
             else:
                 rec.has_access_group = 1 if rec.env.user.id in rec.access_group.users.ids else 0
+    def get_apps_group(self, res_id):
+        print(f'>>>>>>>>>>>>> res_id: {res_id}')
 
+        return json.dumps({'res_id': res_id})
+
+
+    def get_apps(self, parent_id):
+        print(f'>>>>>>>>>>>>> parent_id: {parent_id}')
+        records = self.search([('parent_id', '=', parent_id)])
+        records_access = [rec for rec in records if self.has_access(rec.access_group)]
+
+
+        records_data = list([{'id': rec.id,
+                              'name': rec.name,
+                              'color': rec.color,
+                              'link': rec.link,
+                              'target': rec.target,
+                              } for rec in records_access])
+
+        return json.dumps(records_data)
+
+    def has_access(self, group):
+        # if there is no access group, it permits access
+        complete_name = self.env['ir.model.data'].sudo().search([('res_id', '=', group.id),('model', '=', 'res.groups')]).complete_name
+        has_group = self.env.user.has_group(complete_name) if complete_name else True
+        return has_group
