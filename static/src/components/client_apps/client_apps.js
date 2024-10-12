@@ -33,6 +33,9 @@ export class ClientApps extends Component{
 //            console.log('on will start: A1', session)
 //            })
             if (this.cookie.current.appsStateData ){
+                // todo: adding updateDate here ensures that changes on apps will be updated on cache data.
+                //  however it might have a negative effect on multi level apps
+                this.updateData();
                 try{
                     this.state.data = JSON.parse(this.cookie.current.appsStateData)
                     this.state.nav = JSON.parse(this.cookie.current.appsStateNav)
@@ -58,6 +61,38 @@ export class ClientApps extends Component{
 
         })
         this.onClick = this.onClickCard.bind(this);
+        this.updateData = this.updateData.bind(this);
+    }
+    async updateData(domain=[['parent_id', '=', 1]], parent_id=1){
+//        console.log('updateData')
+        let self = this;
+//        let domain = [['parent_id', '=', 1]]
+                await this.orm.call("sd_apps.settings", 'get_apps', domain, {'parent_id': parent_id})
+                .then( data_list =>{
+                    self.state.data = JSON.parse(data_list)
+//                    console.log('self.state.data', self.state.data)
+                    let cookieData = this.state.data.map(rec=>{
+                        let rec_cp = {...rec}
+                        rec_cp.link = rec_cp.link ? encodeURIComponent(rec_cp.link) : rec_cp.link
+                        rec_cp.name = rec_cp.name ? encodeURIComponent(rec_cp.name) : rec_cp.name
+                        return rec_cp
+                    })
+                    let cookieNav = self.state.nav.map(rec=>{
+                        let rec_cp = {...rec}
+                        rec_cp.link = false
+                        rec_cp.name = rec_cp.name ? encodeURIComponent(rec_cp.name) : rec_cp.name
+                        return rec_cp
+                    })
+                    self.cookie.setCookie('appsStateData', JSON.stringify(cookieData))
+                    self.cookie.setCookie('appsStateNav', JSON.stringify(cookieNav))
+                    let cookie_display = document.querySelector('.cookie_display')
+                    if (cookie_display){
+                        cookie_display.innerHTML = 'this.cookie.current.appsStateData\n <br>'
+                        cookie_display.innerHTML += self.cookie.current.appsStateData
+                    }
+
+
+                })
     }
     async onClickCard(direction, card,){
 //        console.log('onClickCard: A',  direction, card.id)
@@ -84,14 +119,8 @@ export class ClientApps extends Component{
 //                    })
 //                })
 
-
-
-
-
-
-
         if (card.access_group){
-                console.log('card:', card.access_group[0])
+//                console.log('card:', card.access_group[0])
 
 //            console.log('card',card, card.access_group ? card.access_group[1].split('/').join('.') : 'No group')
 
@@ -109,6 +138,7 @@ export class ClientApps extends Component{
             if ( direction == 'home' ){
                 domain =  [['parent_id', '=', 1]]
                 parent_id = 1
+//                console.log('aaa')
                 this.state.nav = []
             }else if ( direction ==  'down' ){
                 domain =  [['parent_id', '=', card.id]]
@@ -126,35 +156,38 @@ export class ClientApps extends Component{
                     i++;
                 }
             }
+            this.updateData(domain, parent_id)
 //            domain.push()
 //            console.log('onClickCard data:', JSON.parse(data_list))
 //            data = await this.orm.searchRead("sd_apps.settings", domain, fields)
 //            this.state.data = data
-            await this.orm.call("sd_apps.settings", 'get_apps', domain, {'parent_id': parent_id})
-                .then( data_list =>{
-                    self.state.data = JSON.parse(data_list)
-                    let cookieData = this.state.data.map(rec=>{
-                        let rec_cp = {...rec}
-                        rec_cp.link = rec_cp.link ? encodeURIComponent(rec_cp.link) : rec_cp.link
-                        rec_cp.name = rec_cp.name ? encodeURIComponent(rec_cp.name) : rec_cp.name
-                        return rec_cp
-                    })
-                    let cookieNav = self.state.nav.map(rec=>{
-                        let rec_cp = {...rec}
-                        rec_cp.link = false
-                        rec_cp.name = rec_cp.name ? encodeURIComponent(rec_cp.name) : rec_cp.name
-                        return rec_cp
-                    })
-                    self.cookie.setCookie('appsStateData', JSON.stringify(cookieData))
-                    self.cookie.setCookie('appsStateNav', JSON.stringify(cookieNav))
-                    let cookie_display = document.querySelector('.cookie_display')
-                    if (cookie_display){
-                        cookie_display.innerHTML = 'this.cookie.current.appsStateData\n <br>'
-                        cookie_display.innerHTML += self.cookie.current.appsStateData
-                    }
 
-
-                })
+//            await this.orm.call("sd_apps.settings", 'get_apps', domain, {'parent_id': parent_id})
+//                .then( data_list =>{
+//                    self.state.data = JSON.parse(data_list)
+//                    console.log('self.state.data', self.state.data)
+//                    let cookieData = this.state.data.map(rec=>{
+//                        let rec_cp = {...rec}
+//                        rec_cp.link = rec_cp.link ? encodeURIComponent(rec_cp.link) : rec_cp.link
+//                        rec_cp.name = rec_cp.name ? encodeURIComponent(rec_cp.name) : rec_cp.name
+//                        return rec_cp
+//                    })
+//                    let cookieNav = self.state.nav.map(rec=>{
+//                        let rec_cp = {...rec}
+//                        rec_cp.link = false
+//                        rec_cp.name = rec_cp.name ? encodeURIComponent(rec_cp.name) : rec_cp.name
+//                        return rec_cp
+//                    })
+//                    self.cookie.setCookie('appsStateData', JSON.stringify(cookieData))
+//                    self.cookie.setCookie('appsStateNav', JSON.stringify(cookieNav))
+//                    let cookie_display = document.querySelector('.cookie_display')
+//                    if (cookie_display){
+//                        cookie_display.innerHTML = 'this.cookie.current.appsStateData\n <br>'
+//                        cookie_display.innerHTML += self.cookie.current.appsStateData
+//                    }
+//
+//
+//                })
 
 
 
