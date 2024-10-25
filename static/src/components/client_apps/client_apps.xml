@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
     <t t-name="sd_apps.client_apps" owl="1">
-        <div>
+        <div >
             <ClientNav nav="state.nav" onClick="onClick"/>
-            <div class="row mx-2">
+            <div class="row mx-2 my-3">
                 <t t-foreach="state.data" t-as="card" t-key="card.id">
 <!--                    <ClientCard card="card" onClick="onClick"/>-->
-                    <a t-att-href="card.link" t-att-target="card.target" class="col">
-                    <ClientCard card="card" onClick="onClick"/>
+                    <a t-att-href="card.link" t-att-target="card.target" class=" col p-3" style="max-width: 350px;">
+                    <ClientCard card="card" onClick="onClick" />
 
                     </a>
                 </t>
