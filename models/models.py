@@ -6,7 +6,7 @@ from datetime import  timedelta
 
 from odoo import models, fields, api, tools
 
-from colorama import Fore
+# from colorama import Fore
 
 class sd_apps(models.Model):
     _name = 'sd_apps.sd_apps'

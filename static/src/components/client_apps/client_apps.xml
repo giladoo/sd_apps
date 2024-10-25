@@ -6,7 +6,7 @@
             <div class="row mx-2">
                 <t t-foreach="state.data" t-as="card" t-key="card.id">
 <!--                    <ClientCard card="card" onClick="onClick"/>-->
-                    <a t-att-href="card.link" t-att-target="card.target">
+                    <a t-att-href="card.link" t-att-target="card.target" class="col">
                     <ClientCard card="card" onClick="onClick"/>
 
                     </a>

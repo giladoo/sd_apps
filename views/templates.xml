@@ -29,7 +29,7 @@
                                 <t t-if="app.active_link and app.has_access_group == 1">
 <!--                                    <div >-->
 
-                                    <a t-att-href="app.link" t-att-target="app.target" class="sd_apps_btn">
+                                    <a t-att-href="app.link" t-att-target="app.target" class="sd_apps_btn col">
                                         <!--                                    todo: image size should be limited to prevent oversize button image-->
                                         <div class="sd_apps_img">
 

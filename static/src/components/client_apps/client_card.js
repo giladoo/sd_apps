@@ -1,5 +1,5 @@
 /** @odoo-module */
-const { Component } = owl
+import { Component } from "@odoo/owl";
 import { useService } from "@web/core/utils/hooks"
 
 export class ClientCard extends Component{

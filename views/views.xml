@@ -44,10 +44,11 @@
                     <templates>
                         <t t-name="kanban-box" t-if="record.has_access_group.value == 1" >
 <!--                        <t t-name="kanban-box" t-if="1" >-->
-                            <div t-attf-class="mb-1 o_kanban_record_has_image_fill o_hr_kanban_record shadow rounded sd_apps_dash oe_kanban_color_#{record.color.value}"
+                            <div t-attf-class="col mb-1 o_kanban_record_has_image_fill o_hr_kanban_record shadow rounded sd_apps_dash oe_kanban_color_#{record.color.value}"
                             style="height:121px;">
-                                <a t-att-href="record.link.value ? record.link.value : '/web#cids=1'" t-att-target="record.link.target">
-                                    <span class="sd_link"> </span>
+                                <a t-att-href="record.link.value ? record.link.value : '/web#cids=1'"
+                                   t-att-target="record.link.target" class="col">
+                                    <span class="sd_link1 col"> </span>
                                 </a>
                                 <field name="image" widget="image"
                                        options="{'zoom': true,'img_style': 'max-height:70px !important;max-width:70px !important;'}"/>
@@ -58,13 +59,13 @@
                                             <t t-esc="record.name.value"/>
                                             <t t-esc="record.color.value"/>
                                         </strong>
-                                        <div t-if="record.sequence.value"
-                                             t-field="sequence.value"
-                                             t-options="{'widget': 'ace',
-                                         'width': 600, 'height': 120,
-                                         'img_style': 'max-height:70px;max-width:70px;',
-                                         'img_align': 'center'}">
-                                        </div>
+<!--                                        <div t-if="record.sequence.value"-->
+<!--                                             t-field="sequence.value"-->
+<!--                                             t-options="{'widget': 'ace',-->
+<!--                                         'width': 600, 'height': 120,-->
+<!--                                         'img_style': 'max-height:70px;max-width:70px;',-->
+<!--                                         'img_align': 'center'}">-->
+<!--                                        </div>-->
                                     </div>
                                 </div>
                             </div>

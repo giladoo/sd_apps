@@ -1,22 +1,18 @@
 /** @odoo-module */
 import { registry } from "@web/core/registry"
-//import { ORM } from "../../core/orm_service";
 import { ClientCard } from "./client_card"
 import { ClientNav } from "./client_nav"
 import { useService } from "@web/core/utils/hooks"
-//import { session } from "@web/session";
-import session from 'web.session';
-
-const { Component,  } = owl
-const { xml } = owl.tags
-const { useState, onMounted, onWillStart,  onWillUnmount } = owl.hooks;
-
+import { session } from "@web/session";
+import { cookie } from "@web/core/browser/cookie";
+import { Component, useState, onMounted, onWillStart,  onWillUnmount } from "@odoo/owl";
 export class ClientApps extends Component{
     setup(){
         let self = this;
         this.orm = useService("orm")
         this.router = useService("router")
-        this.cookie = useService("cookie")
+        console.log('cookie:', cookie)
+//        this.cookie = useService("cookie")
         this.rpc = useService("rpc")
 
         this.state = useState({
@@ -24,7 +20,8 @@ export class ClientApps extends Component{
             nav: []
         })
         onMounted(()=>{
-            self.el.parentElement.style.overflowY = 'scroll'
+            console.log('onMounted', self)
+//            self.el.parentElement.style.overflowY = 'scroll'
         })
         onWillStart(async ()=>{
 
@@ -32,10 +29,10 @@ export class ClientApps extends Component{
 //            this.rpc('/web/session/get_session_info').then(function (session) {
 //            console.log('on will start: A1', session)
 //            })
-            if (this.cookie.current.appsStateData ){
+            if (cookie.get('appsStateData') ){
                 try{
-                    this.state.data = JSON.parse(this.cookie.current.appsStateData)
-                    this.state.nav = JSON.parse(this.cookie.current.appsStateNav)
+                    this.state.data = JSON.parse(cookie.get('appsStateData'))
+                    this.state.nav = JSON.parse(cookie.get('appsStateNav'))
 //                                console.log('on will start: AA', this.state.data)
 
                     this.state.data.map(rec=>{
@@ -145,12 +142,12 @@ export class ClientApps extends Component{
                         rec_cp.name = rec_cp.name ? encodeURIComponent(rec_cp.name) : rec_cp.name
                         return rec_cp
                     })
-                    self.cookie.setCookie('appsStateData', JSON.stringify(cookieData))
-                    self.cookie.setCookie('appsStateNav', JSON.stringify(cookieNav))
+                    cookie.set('appsStateData', JSON.stringify(cookieData))
+                    cookie.set('appsStateNav', JSON.stringify(cookieNav))
                     let cookie_display = document.querySelector('.cookie_display')
                     if (cookie_display){
                         cookie_display.innerHTML = 'this.cookie.current.appsStateData\n <br>'
-                        cookie_display.innerHTML += self.cookie.current.appsStateData
+                        cookie_display.innerHTML += cookie.get('appsStateData')
                     }
 
 

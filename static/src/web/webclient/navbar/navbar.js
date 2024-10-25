@@ -40,7 +40,7 @@ import { UserMenu } from "@web/webclient/user_menu/user_menu";
 //    },
 //});
 
-patch(NavBar, "sd_apps.NavBar", {
+patch(NavBar, {
     components: {
         ...NavBar.components,
         AppsBar,

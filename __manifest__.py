@@ -17,7 +17,7 @@
     # for the full list
     'category': 'Service Desk/Service Desk',
     'application': True,
-    'version': '2.0.3',
+    'version': '17.0.2.0.4',
 
     # any module necessary for this one to work correctly
     'depends': ['base', 'web', 'mail'],
@@ -47,13 +47,13 @@
 
         ],
         'web.assets_qweb': [
+        ],
+        'web.assets_backend': [
+
             'sd_apps/static/src/components/**/*.xml',
             'sd_apps/static/src/web/**/*.xml',
             # 'sd_apps/static/src/xml/control_panel.xml',
             'sd_apps/static/src/xml/**/*.xml',
-        ],
-        'web.assets_backend': [
-
             'sd_apps/static/src/components/**/*.js',
             'sd_apps/static/src/components/**/*.scss',
             'sd_apps/static/src/css/my-style.scss',

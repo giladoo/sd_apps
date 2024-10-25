@@ -2,7 +2,7 @@
 
 import { useService } from "@web/core/utils/hooks";
 
-const { Component, hooks } = owl;
+import { Component } from "@odoo/owl";
 
 export class AppsBar extends Component {}
 

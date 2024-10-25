@@ -3,7 +3,7 @@ from odoo import http
 from odoo.http import request
 from datetime import datetime, timedelta
 import datetime
-from colorama import Fore
+# from colorama import Fore
 import jdatetime
 
 
@@ -53,9 +53,9 @@ class Apps(http.Controller):
         time_2 = datetime.datetime.now()
         duration = round((time_2 - time_1).microseconds / 1000 , 1)
         count = len(apps)
-        print(Fore.RED,count)
-        print(Fore.RED,count)
-        print(Fore.RED,count)
+        # print(Fore.RED,count)
+        # print(Fore.RED,count)
+        # print(Fore.RED,count)
         return http.request.render('sd_apps.apps', {'apps': apps,
                                                     'count': count,
                                                     'search': search,
