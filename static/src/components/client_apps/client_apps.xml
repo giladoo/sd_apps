@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
     <t t-name="sd_apps.client_apps" owl="1">
-        <div >
+        <div class="sd_apps_client_apps">
             <ClientNav nav="state.nav" onClick="onClick"/>
             <div class="row mx-2 my-3">
                 <t t-foreach="state.data" t-as="card" t-key="card.id">

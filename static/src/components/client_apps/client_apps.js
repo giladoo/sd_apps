@@ -20,8 +20,12 @@ export class ClientApps extends Component{
             nav: []
         })
         onMounted(()=>{
-            console.log('onMounted', self)
-//            self.el.parentElement.style.overflowY = 'scroll'
+            let oActionManager = document.querySelector('.o_action_manager')
+            oActionManager && (oActionManager.style.overflowY = 'scroll')
+        })
+        onWillUnmount(()=>{
+            let oActionManager = document.querySelector('.o_action_manager')
+            oActionManager && (oActionManager.style.overflowY = '')
         })
         onWillStart(async ()=>{
 
