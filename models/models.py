@@ -55,14 +55,14 @@ class sd_apps_settings(models.Model):
             else:
                 rec.has_access_group = 1 if rec.env.user.id in rec.access_group.users.ids else 0
     def get_apps_group(self, res_id):
-        print(f'>>>>>>>>>>>>> res_id: {res_id}')
+        # print(f'>>>>>>>>>>>>> res_id: {res_id}')
 
         return json.dumps({'res_id': res_id})
 
 
     def get_apps(self, parent_id):
-        print(f'>>>>>>>>>>>>> parent_id: {parent_id}')
-        records = self.search([('parent_id', '=', parent_id)])
+        # print(f'>>>>>>>>>>>>> parent_id: {parent_id}')
+        records = self.search([('parent_id', '=', parent_id), ('active_link', '=', True)])
         records_access = [rec for rec in records if self.has_access(rec.access_group)]
 
 
