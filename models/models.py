@@ -41,7 +41,8 @@ class sd_apps_settings(models.Model):
 
     image = fields.Image(string='Logo')
     color = fields.Integer()
-    parent_id = fields.Many2one('sd_apps.settings')
+    parent_id = fields.Many2one('sd_apps.settings',
+                                default=lambda self: self.search([('id', '=', 1)]).id if self.search([('id', '=', 1)]) else False)
 
     def _has_access_group(self):
 
