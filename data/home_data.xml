@@ -8,6 +8,12 @@
             <field name="name">Home</field>
             <field name="active_link">True</field>
         </record>
+        <record id="record_1" model="sd_apps.settings">
+            <field name="name">Apps</field>
+            <field name="active_link">True</field>
+            <field name="access_group" eval="obj(ref('sd_apps.group_sd_apps_admins'))" model="res.groups"/>
+
+        </record>
 <!--        <record id="record_1" model="sd_apps.settings">-->
 <!--            <field name="name">Exit</field>-->
 <!--            <field name="active_link">True</field>-->

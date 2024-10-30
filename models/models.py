@@ -62,17 +62,36 @@ class sd_apps_settings(models.Model):
 
 
     def get_apps(self, parent_id):
-        # print(f'>>>>>>>>>>>>> parent_id: {parent_id}')
-        records = self.search([('parent_id', '=', parent_id), ('active_link', '=', True)])
-        records_access = [rec for rec in records if self.has_access(rec.access_group)]
+        print(f'>>>>>>>>>>>>> parent_id: {parent_id}')
+        if parent_id == 2:
+            menu_list = self.env['ir.ui.menu'].search([('parent_id', '=', False)])
+            print(f'>>>>>>>>>>>>> menu_list: {menu_list}')
+            for menu in menu_list:
+                action_id = menu.action.id if menu.action else False
+                menu_id = menu.id
+                menu_name = menu.name
+                menu_icon = menu.web_icon_data
+                print(f"{menu_name}  | menu_id: {menu_id} | action_id: {action_id} |")
 
 
-        records_data = list([{'id': rec.id,
-                              'name': rec.name,
-                              'color': rec.color,
-                              'link': rec.link,
-                              'target': rec.target,
-                              } for rec in records_access])
+            records_data = list([{'id': rec.id,
+                                  'name': rec.name,
+                                  # 'color': rec.color,
+                                  'link': f"/web#menu_id={rec.id}&action={ rec.action.id if rec.action else ''}",
+                                  'target': '_self',
+                                  'icon': 'icon' if rec.web_icon_data else 'base',
+                                  } for rec in menu_list])
+        else:
+            records = self.search([('parent_id', '=', parent_id), ('active_link', '=', True)])
+            records_access = [rec for rec in records if self.has_access(rec.access_group)]
+            records_data = list([{'id': rec.id,
+                                  'name': rec.name,
+                                  'color': rec.color,
+                                  'link': rec.link,
+                                  'target': rec.target,
+                                  'icon': 'image' if rec.image else 'base',
+
+                                  } for rec in records_access])
 
         return json.dumps(records_data)
 
@@ -81,3 +100,14 @@ class sd_apps_settings(models.Model):
         complete_name = self.env['ir.model.data'].sudo().search([('res_id', '=', group.id),('model', '=', 'res.groups')]).complete_name
         has_group = self.env.user.has_group(complete_name) if complete_name else True
         return has_group
+
+    def unlink(self):
+        print(f">>>>>>>>>>>\n self:{type(self)}")
+        ids = self.ids
+        new_ids = []
+
+        for rec_id in ids:
+            if rec_id > 2:
+                new_ids.append(rec_id)
+        self = self.browse(new_ids)
+        return super().unlink()
