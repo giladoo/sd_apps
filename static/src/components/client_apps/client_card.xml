@@ -12,7 +12,7 @@
 <!--                        <img t-if="props.card.icon" t-attf-src="props.card.icon"/>-->
                         <img t-if="props.card.icon == 'icon'" class="rounded" t-attf-src="/web/image?model=ir.ui.menu&amp;id={{props.card.id}}&amp;field=web_icon_data"/>
                         <img t-if="props.card.icon == 'base'" class="rounded" t-attf-src="/base/static/description/icon.png"/>
-                        <img t-if="props.card.icon == image" class="rounded" t-attf-src="/web/image?model=sd_apps.settings&amp;id={{props.card.id}}&amp;field=image"/>
+                        <img t-if="props.card.icon == 'image'" class="rounded" t-attf-src="/web/image?model=sd_apps.settings&amp;id={{props.card.id}}&amp;field=image"/>
                     </div>
                     <div class="col "></div>
                 </div>
