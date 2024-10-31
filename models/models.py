@@ -102,12 +102,12 @@ class sd_apps_settings(models.Model):
         return has_group
 
     def unlink(self):
-        print(f">>>>>>>>>>>\n self:{type(self)}")
+        # print(f">>>>>>>>>>>\n self:{type(self)}")
         ids = self.ids
         new_ids = []
 
         for rec_id in ids:
-            if rec_id > 2:
+            if rec_id > 3:
                 new_ids.append(rec_id)
         self = self.browse(new_ids)
         return super().unlink()

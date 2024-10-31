@@ -6,12 +6,23 @@
 
         <record id="record_0" model="sd_apps.settings">
             <field name="name">Home</field>
+            <field name="sequence">1</field>
             <field name="active_link">True</field>
         </record>
         <record id="record_1" model="sd_apps.settings">
             <field name="name">Apps</field>
             <field name="active_link">True</field>
+            <field name="sequence">1000</field>
             <field name="access_group" eval="obj(ref('sd_apps.group_sd_apps_admins'))" model="res.groups"/>
+
+        </record>
+        <record id="record_2" model="sd_apps.settings">
+            <field name="name">Logout</field>
+            <field name="active_link">True</field>
+            <field name="link">/web/session/logout</field>
+            <field name="sequence">1001</field>
+            <field name="image" type="base64" file="sd_apps/static/description/sign_out.png"/>
+
 
         </record>
 <!--        <record id="record_1" model="sd_apps.settings">-->
