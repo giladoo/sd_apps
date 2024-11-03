@@ -3,13 +3,14 @@
     <t t-name="sd_apps.client_apps" owl="1">
         <div class="sd_apps_client_apps">
 <!--            <ClientNav nav="state.nav" onClick="onClick"/>-->
-            <div class="row mx-2 my-3">
+            <div class="row mx-2 mx-sm-5 my-3">
                 <t t-foreach="state.data" t-as="card" t-key="card.id">
 <!--                    <ClientCard card="card" onClick="onClick"/>-->
-                    <a t-att-href="card.link" t-att-target="card.target" class=" col p-3" style="max-width: 350px;">
-                    <ClientCard card="card" onClick="onClick" />
+<!--                    <div t-att-href="card.link" t-att-target="card.target" class=" col p-0 m-sm-4 border border-danger"-->
+<!--                         style="max-width: 350px;">-->
+                        <ClientCard card="card" onClick="onClick" />
 
-                    </a>
+<!--                    </div>-->
                 </t>
             </div>
 <!--            <div class="cookie_display border border-danger mt-5 mx-2" style="direction:ltr; text-align: left"></div>-->
