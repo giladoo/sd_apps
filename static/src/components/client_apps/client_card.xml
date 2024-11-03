@@ -2,10 +2,10 @@
 <templates xml:space="preserve">
     <t t-name="sd_apps.client_card" owl="1">
 
-        <div class="client_card row border shadow rounded m-1 m-sm-3 p-0 "
+        <div class="client_card row border shadow rounded m-1 m-md-3 p-0 "
              t-on-click="props.hasOwnProperty('onClick') ? ()=>props.onClick( 'down', props.card, ) : ''">
-            <div t-attf-class="client_card_color client_card_color_{{props.card.color}}"></div>
-            <div class="col p-0">
+            <div t-attf-class="p-0 client_card_color client_card_color_{{props.card.color}}"></div>
+            <div class="col p-0 ms-2 ">
                 <div class="row mx-0 client_card_top">
 <!--                    <div class="col-5 p-2 client_card_image"><img t-if="props.card.image" class="rounded" t-att-src="'data:image/png;base64,' + props.card.image"/></div>-->
                     <div class="col-5 p-2 client_card_image">
@@ -16,7 +16,9 @@
                     </div>
                     <div class="col "></div>
                 </div>
-                <div class="h5 text-primary client_card_title font-weight-bold px-1 " t-esc="props.card.name"></div>
+                <div class="h5 text-primary text-center client_card_title font-weight-bold px-1 "
+                     t-esc="props.card.name">
+                </div>
             </div>
         </div>
     </t>

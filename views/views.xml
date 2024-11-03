@@ -20,7 +20,7 @@
                     <field name="active_link" widget="boolean_toggle" />
                     <field name="link" />
                     <field name="parent_id"
-                           domain="[('id', '!=', 2)]"
+                           domain="[('app_type', '!=', 'apps')]"
                            options="{'no_create': True, 'no_create_edit':True, 'no_open': True}" />
                     <field name="target"/>
                     <field name="access_group"/>
@@ -101,7 +101,7 @@
             <field name="view_mode">tree</field>
 <!--            <field name="context">{'search_default_ongoing': 1}</field>-->
             <field name="context">{}</field>
-            <field name="domain">[('id', '>', 2)]</field>
+            <field name="domain">[('app_type', 'not in', ['home', 'apps'])]</field>
             <field name="view_ids" eval="[(5, 0, 0),
                 (0, 0, {'view_mode': 'tree', 'view_id': ref('sd_apps_settings_list')}),
                 ]"/>
@@ -112,7 +112,7 @@
             <field name="name">Dashboard</field>
             <field name="res_model">sd_apps.settings</field>
             <field name="view_mode">kanban</field>
-            <field name="domain">[('active_link', '=', True),('parent_id', '=', 1)]</field>
+            <field name="domain">[('active_link', '=', True),('parent_id.app_type', '=', 'home')]</field>
             <field name="view_ids" eval="[(5, 0, 0),
                 (0, 0, {'view_mode': 'kanban', 'view_id': ref('sd_apps_settings_kanban')}),
                 ]"/>

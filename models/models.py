@@ -32,6 +32,8 @@ class sd_apps_settings(models.Model):
     name = fields.Char(required=True, translate=True)
     active_link = fields.Boolean(default=False)
     app_or_link = fields.Boolean(default=True)
+    # mng_app = fields.Boolean(default=False)
+    app_type = fields.Char(default='')
     link = fields.Char()
     target = fields.Selection([('_blank', 'New Tab'), ('_self', 'Same Tab')], default='_self')
     priority = fields.Integer(default=10)
@@ -41,7 +43,7 @@ class sd_apps_settings(models.Model):
 
     image = fields.Image(string='Logo')
     color = fields.Integer()
-    parent_id = fields.Many2one('sd_apps.settings',
+    parent_id = fields.Many2one('sd_apps.settings', ondelete='restrict',
                                 default=lambda self: self.search([('id', '=', 1)]).id if self.search([('id', '=', 1)]) else False)
 
     def _has_access_group(self):
@@ -62,16 +64,17 @@ class sd_apps_settings(models.Model):
 
 
     def get_apps(self, parent_id):
-        print(f'>>>>>>>>>>>>> parent_id: {parent_id}')
-        if parent_id == 2:
+        # print(f'>>>>>>>>>>>>> parent_id: {parent_id}')
+        record = self.browse(parent_id)
+        if record.app_type == 'apps':
             menu_list = self.env['ir.ui.menu'].search([('parent_id', '=', False)])
-            print(f'>>>>>>>>>>>>> menu_list: {menu_list}')
+            # print(f'>>>>>>>>>>>>> menu_list: {menu_list}')
             for menu in menu_list:
                 action_id = menu.action.id if menu.action else False
                 menu_id = menu.id
                 menu_name = menu.name
                 menu_icon = menu.web_icon_data
-                print(f"{menu_name}  | menu_id: {menu_id} | action_id: {action_id} |")
+                # print(f"{menu_name}  | menu_id: {menu_id} | action_id: {action_id} |")
 
 
             records_data = list([{'id': rec.id,
@@ -102,12 +105,7 @@ class sd_apps_settings(models.Model):
         return has_group
 
     def unlink(self):
-        # print(f">>>>>>>>>>>\n self:{type(self)}")
-        ids = self.ids
-        new_ids = []
-
-        for rec_id in ids:
-            if rec_id > 3:
-                new_ids.append(rec_id)
+        new_ids = list([rec.id for rec in self if rec.app_type == ''])
         self = self.browse(new_ids)
         return super().unlink()
+
