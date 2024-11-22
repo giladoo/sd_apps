@@ -8,7 +8,7 @@ from odoo import models, fields, api, tools
 
 # from colorama import Fore
 
-class sd_apps(models.Model):
+class SdApps(models.Model):
     _name = 'sd_apps.sd_apps'
     _description = 'sd_apps.sd_apps'
     _inherit = ['mail.thread', 'mail.activity.mixin']
@@ -23,7 +23,7 @@ class sd_apps(models.Model):
 
 
 
-class sd_apps_settings(models.Model):
+class SdAppsSettings(models.Model):
     _name = 'sd_apps.settings'
     _description = 'sd_apps.settings'
     _inherit = ['mail.thread', 'mail.activity.mixin']
@@ -76,7 +76,8 @@ class sd_apps_settings(models.Model):
                 menu_icon = menu.web_icon_data
                 # print(f"{menu_name}  | menu_id: {menu_id} | action_id: {action_id} |")
 
-
+            # TODO: link needed to be reorganized based on odoo 18
+            #  in odoo 18 link must be like: "/odoo/{appPath or actin-appID}" while it was like "/web#munu_id..."
             records_data = list([{'id': rec.id,
                                   'name': rec.name,
                                   # 'color': rec.color,
@@ -98,13 +99,13 @@ class sd_apps_settings(models.Model):
 
         return json.dumps(records_data)
 
-    def has_access(self, group):
-        # if there is no access group, it permits access
-        print('&&&&&&&&&&&&&&&&&&&&& group:', group)
+    def has_access(self, group):        # if there is no access group, it permits access
         # TODO: it get 'write', 'create', or 'unlink' as group instead of id
-        return True
-        complete_name = self.env['ir.model.data'].sudo().search([('res_id', '=', group.id),('model', '=', 'res.groups')]).complete_name
-        has_group = self.env.user.has_group(complete_name) if complete_name else True
+        if type(group) == str:
+            has_group = True
+        else:
+            complete_name = self.env['ir.model.data'].sudo().search([('res_id', '=', group.id),('model', '=', 'res.groups')]).complete_name
+            has_group = self.env.user.has_group(complete_name) if complete_name else True
         return has_group
 
     def unlink(self):

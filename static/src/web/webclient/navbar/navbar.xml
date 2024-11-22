@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<templates xml:space="preserve">
+	<t t-name="sd_apps.NavBar" t-inherit="web.NavBar" t-inherit-mode="extension" owl="1">
+	    <xpath expr="//nav" position="before">
+	    	<t t-if="!apps" t-set="apps" t-value="menuService.getApps()"  />
+<!--			<t t-log="menuService, menuService.getCurrentApp(), menuService.getMenu(133), " ></t>-->
+	    </xpath>
+		<xpath expr="//t[@t-call='web.NavBar.AppsMenu']" position="replace">
+			<AppsHome apps="apps" />
+		</xpath>
+	</t>
+	
+</templates>
