@@ -12,8 +12,9 @@
             <field name="name">sd_apps List</field>
             <field name="model">sd_apps.settings</field>
             <field name="arch" type="xml">
-                <tree editable="bottom">
+                <list editable="bottom">
 <!--                    <field name="id"/>-->
+<!--                    <field name="priority"/>-->
                     <field name="sequence" widget="handle"/>
                     <field name="image" widget="image" class="oe_avatar sd_apps_dash" groups="base.group_user"/>
                     <field name="name"/>
@@ -26,9 +27,8 @@
                     <field name="access_group"/>
                     <field name="color" widget="color_picker"/>
 
-<!--                    <field name="priority"/>-->
 
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -98,12 +98,12 @@
         <record model="ir.actions.act_window" id="sd_apps.action_window_services_settings">
             <field name="name">Dashboard Configuration</field>
             <field name="res_model">sd_apps.settings</field>
-            <field name="view_mode">tree</field>
+            <field name="view_mode">list</field>
 <!--            <field name="context">{'search_default_ongoing': 1}</field>-->
             <field name="context">{}</field>
             <field name="domain">[('app_type', 'not in', ['home', 'apps'])]</field>
             <field name="view_ids" eval="[(5, 0, 0),
-                (0, 0, {'view_mode': 'tree', 'view_id': ref('sd_apps_settings_list')}),
+                (0, 0, {'view_mode': 'list', 'view_id': ref('sd_apps_settings_list')}),
                 ]"/>
             <!--                (0, 0, {'view_mode': 'form', 'view_id': ref('sd_apps_settings_form')}),-->
         </record>
@@ -129,11 +129,6 @@
                   sequence="0"
                   id="sd_apps.kanban"
                   action="sd_apps.client_apps"/>
-
-<!--        <menuitem name="Dashboard new"-->
-<!--                    id="sd_apps.client_apps_menu"-->
-<!--                  action="sd_apps.action_window_kanban"/>-->
-
 
         <menuitem name="Configuration"
                   id="sd_apps.settings"

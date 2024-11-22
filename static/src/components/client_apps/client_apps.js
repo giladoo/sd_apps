@@ -10,10 +10,10 @@ export class ClientApps extends Component{
     setup(){
         let self = this;
         this.orm = useService("orm")
-        this.router = useService("router")
+//        this.router = useService("router")
 //        console.log('cookie:', cookie)
 //        this.cookie = useService("cookie")
-        this.rpc = useService("rpc")
+//        this.rpc = useService("rpc")
 
         this.state = useState({
             data: [],
