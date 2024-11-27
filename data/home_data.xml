@@ -10,13 +10,14 @@
             <field name="sequence">1</field>
             <field name="active_link">True</field>
         </record>
+
         <record id="record_1" model="sd_apps.settings">
             <field name="name">Apps</field>
             <field name="app_type">apps</field>
             <field name="active_link">True</field>
             <field name="color">4</field>
             <field name="sequence">1000</field>
-            <field name="access_group" eval="obj(ref('sd_apps.group_sd_apps_admins'))" model="res.groups"/>
+            <field name="access_group" eval="obj(ref('base.group_system'))" model="res.groups"/>
             <field name="image" type="base64" file="base/static/description/modules.png"/>
 
         </record>
@@ -28,7 +29,6 @@
             <field name="link">/web/session/logout</field>
             <field name="sequence">1001</field>
             <field name="image" type="base64" file="sd_apps/static/description/sign_out.png"/>
-
 
         </record>
 <!--        <record id="record_1" model="sd_apps.settings">-->
