@@ -4,6 +4,7 @@ import { session } from "@web/session";
 import { url } from "@web/core/utils/urls";
 import { useService } from "@web/core/utils/hooks";
 import { Dropdown } from "@web/core/dropdown/dropdown";
+
 import { Component,useState, useContext, useBus } from "@odoo/owl";
 export class AppsHome extends Component {
 

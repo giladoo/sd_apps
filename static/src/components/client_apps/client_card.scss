@@ -5,6 +5,41 @@
     .client_card_box{
 
     }
+    &_border_color{
+        &_1 {
+            border-color: #F06050 !important;
+        }
+                &_2 {
+            border-color: #F4A460 !important;
+        }
+        &_3 {
+            border-color: #F7CD1F !important;
+        }
+        &_4 {
+            border-color: #6CC1ED !important;
+        }
+        &_5 {
+            border-color: #814968 !important;
+        }
+        &_6 {
+            border-color: #EB7E7F !important;
+        }
+        &_7 {
+            border-color: #2C8397 !important;
+        }
+        &_8 {
+            border-color: #475577 !important;
+        }
+        &_9 {
+            border-color: #D6145F !important;
+        }
+        &_10 {
+            border-color: #30C381 !important;
+        }
+        &_11 {
+            border-color: #9365B8 !important;
+        }
+    }
     &_color{
         width: 8px;
         height: auto;
@@ -84,4 +119,11 @@
         width: 30px;
         height: 30px;
     }
+}
+
+input.o_input, select.o_input {
+//     font-family: Arial !important;
+    border-width: 1px !important;
+    border-radius: 5px !important;
+
 }

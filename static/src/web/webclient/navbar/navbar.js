@@ -4,6 +4,7 @@ import { session } from "@web/session";
 import { url } from "@web/core/utils/urls";
 import { patch } from "@web/core/utils/patch";
 import { registry } from "@web/core/registry";
+import { Dropdown } from "@web/core/dropdown/dropdown";
 
 import { NavBar } from "@web/webclient/navbar/navbar";
 import { AppsHome } from "@sd_apps/web/webclient/appsmenu/appsmenu";

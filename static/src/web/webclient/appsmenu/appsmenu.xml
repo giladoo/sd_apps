@@ -2,23 +2,78 @@
 <templates>
     <t t-name="sd_apps.navbar_appsmenu" owl="1">
         <div class="d-none">AppsHome</div>
-<!--        <t t-log="'apps2:', props.apps, "></t>-->
+        <!--        <t t-log="'apps2:', props.apps, "></t>-->
         <div class="row mx-1">
-            <div class="col o_menu_brand" >
+            <div class="col o_menu_brand">
                 <a t-attf-href="/web#menu_id={{props.apps[0].id}}" class="o_menu_brand p-2">
-<!--                <a t-att-href="getMenuItemHref(133)"  class="o_navbar_apps_menu p-2">-->
+                    <!--                <a t-att-href="getMenuItemHref(133)"  class="o_navbar_apps_menu p-2">-->
                     <i class="fa fa-th"/>
                 </a>
-            </div >
+            </div>
             <div class="col o_menu_brand mx-3 o_navbar_apps_menu p-2" t-on-click="onBackBtn">
-<!--            <div class="mx-3 o_navbar_apps_menu p-2" >-->
-<!--                <a t-attf-href="/web#menu_id={{props.apps[props.apps.length - 2].id}}" class="o_navbar_apps_menu p-2">-->
+                <!--            <div class="mx-3 o_navbar_apps_menu p-2" >-->
+                <!--                <a t-attf-href="/web#menu_id={{props.apps[props.apps.length - 2].id}}" class="o_navbar_apps_menu p-2">-->
 
-<!--                <a t-att-href="getMenuItemHref(apps[apps.length - 2])" >-->
+                <!--                <a t-att-href="getMenuItemHref(apps[apps.length - 2])" >-->
 
-                    <i class="fa fa-arrow-left"/>
-<!--                </a>-->
+                <i class="fa fa-arrow-left"/>
+                <!--                </a>-->
             </div>
         </div>
     </t>
+
+    <t t-name="sd_apps.navbar_appsmenu_1" owl="1">
+        <!--    <t t-name="web.NavBar.AppsMenu">-->
+        <t t-if="env.isSmall">
+            <a href="/odoo" class="o_menu_toggle border-0"
+               t-att-class="{'hasImage': currentApp?.webIconData}"
+               accesskey="h" t-ref="menuApps" t-on-click.prevent="_openAppMenuSidebar">
+                <!--        <t t-call="web.NavBar.AppsMenu.Sidebar"/>-->
+            </a>
+
+
+        </t>
+        <t t-else="">
+            <!--      <div t-if="!isScopedApp" class="o_navbar_apps_menu">-->
+            <!--        <Dropdown>-->
+            <!--          <button data-hotkey="h" title="Home Menu">-->
+            <!--            <i class="oi oi-apps" />-->
+            <!--          </button>-->
+            <!--          <t t-set-slot="content">-->
+            <!--            <DropdownItem-->
+            <!--              t-foreach="apps"-->
+            <!--              t-as="app"-->
+            <!--              t-key="app.id"-->
+            <!--              class="{ 'o_app': true, focus: menuService.getCurrentApp() === app }"-->
+            <!--              onSelected="() => this.onNavBarDropdownItemSelection(app)"-->
+            <!--              t-esc="app.name"-->
+            <!--              attrs="{ href: getMenuItemHref(app), 'data-menu-xmlid': app.xmlid, 'data-section': app.id }"-->
+            <!--            />-->
+            <!--          </t>-->
+            <!--        </Dropdown>-->
+            <!--      </div>-->
+            <!--      <div t-else="" class="mx-2"/>-->
+            <div class="d-none">AppsHome</div>
+            <!--        <t t-log="'apps2:', props.apps, "></t>-->
+            <div class="row mx-1">
+                <div class="col o_menu_brand">
+                    <a t-attf-href="/web#menu_id={{props.apps[0].id}}" class="o_menu_brand p-2">
+                        <!--                <a t-att-href="getMenuItemHref(133)"  class="o_navbar_apps_menu p-2">-->
+                        <i class="fa fa-th"/>
+                    </a>
+                </div>
+                <div class="col o_menu_brand mx-3 o_navbar_apps_menu p-2" t-on-click="onBackBtn">
+                    <!--            <div class="mx-3 o_navbar_apps_menu p-2" >-->
+                    <!--                <a t-attf-href="/web#menu_id={{props.apps[props.apps.length - 2].id}}" class="o_navbar_apps_menu p-2">-->
+
+                    <!--                <a t-att-href="getMenuItemHref(apps[apps.length - 2])" >-->
+
+                    <i class="fa fa-arrow-left"/>
+                    <!--                </a>-->
+                </div>
+            </div>
+        </t>
+    </t>
+
+
 </templates>
