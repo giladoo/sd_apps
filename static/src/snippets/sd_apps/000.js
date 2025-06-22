@@ -18,7 +18,7 @@ publicWidget.registry.SdAppsSnippet = publicWidget.Widget.extend({
             .then(data => {
                 this.updateBoxes(data)
             })
-        console.log('this:', this)
+//        console.log('this:', this)
 
         return this._super(...arguments);
     },
@@ -91,7 +91,7 @@ publicWidget.registry.SdAppsSnippet = publicWidget.Widget.extend({
     },
 
     async onClick(direction, card, self){
-        console.log('onClickCard: A',  direction, card.id, this, self)
+//        console.log('onClickCard: A',  direction, card.id, this, self)
 
 //        this.state = {nav: []}
 //        let self = this;
@@ -117,7 +117,7 @@ publicWidget.registry.SdAppsSnippet = publicWidget.Widget.extend({
 
 
         if (card.access_group){
-                console.log('card:', card.access_group[0])
+//                console.log('card:', card.access_group[0])
 
 //            console.log('card',card, card.access_group ? card.access_group[1].split('/').join('.') : 'No group')
 
@@ -128,11 +128,11 @@ publicWidget.registry.SdAppsSnippet = publicWidget.Widget.extend({
         if (typeof card == 'object' && card.link){
 //            this.router.redirect(decodeURIComponent(card.link))
 //            window.open(decodeURIComponent(card.link), '_blank');
-                console.log('target:', card.target, card.link)
+//                console.log('target:', card.target, card.link)
 
             window.open(decodeURIComponent(card.link), card.target);
         }else{
-            console.log('target 2:', card.target, card.link)
+//            console.log('target 2:', card.target, card.link)
 
             if ( direction == 'home' ){
                 domain =  [['parent_id', '=', 1]]
@@ -156,7 +156,7 @@ publicWidget.registry.SdAppsSnippet = publicWidget.Widget.extend({
             }
         self._getData(parent_id)
             .then(data => {
-                console.log('then:', data)
+//                console.log('then:', data)
                 self.updateBoxes(data)
             })
 //        self.updateData(domain, parent_id)

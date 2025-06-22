@@ -63,12 +63,13 @@ class SdAppsSettings(models.Model):
         return json.dumps({'res_id': res_id})
 
 
-    def get_apps(self, parent_id):
-        # print(f'>>>>>>>>>>>>> parent_id: {parent_id}')
+    def get_apps(self, parent_id, u_id=4):
+        print(f'\n>>>>>>>>>>>>> u_id: {u_id} uid: {self.env.uid}')
         record = self.browse(parent_id)
         if record.app_type == 'apps':
-            menu_list = self.env['ir.ui.menu'].search([('parent_id', '=', False)])
-            # print(f'>>>>>>>>>>>>> menu_list: {menu_list}')
+            domain = [('parent_id', '=', False)]
+            menu_list = self.env['ir.ui.menu'].search(domain)
+            # print(f'\n>>>>>>>>>>>>> menu_list: {menu_list}')
             for menu in menu_list:
                 action_id = menu.action.id if menu.action else False
                 menu_id = menu.id
@@ -86,7 +87,11 @@ class SdAppsSettings(models.Model):
                                   'icon': 'icon' if rec.web_icon_data else 'base',
                                   } for rec in menu_list])
         else:
-            records = self.search([('parent_id', '=', parent_id), ('active_link', '=', True)])
+            domain = [('parent_id', '=', parent_id), ('active_link', '=', True)]
+            if self.env.uid == 4:
+                domain.append(('app_type', '!=', 'logout'))
+
+            records = self.search(domain)
             records_access = [rec for rec in records if self.has_access(rec.access_group)]
             records_data = list([{'id': rec.id,
                                   'name': rec.name,
