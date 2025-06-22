@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 {
     'name': "sd_apps",
 
@@ -16,15 +15,18 @@
     # for the full list
     'category': 'Service Desk/Service Desk',
     'application': True,
-    'version': '18.0.1.0.1',
+    'version': '18.0.1.0.2',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'web', 'mail'],
+    'depends': ['base', 'web', 'mail','website','web_editor',],
 
     # always loaded
     'data': [
         'security/security.xml',
         'security/ir.model.access.csv',
+        'views/snippets/sd_apps.xml',
+        'views/snippets/snippets.xml',
+
         'views/views.xml',
         'data/home_data.xml'
     ],
@@ -39,10 +41,16 @@
             'sd_apps/static/src/web/**/*.scss',
             'sd_apps/static/src/web/**/*.js',
         ],
+        'web.assets_frontend': [
+            'sd_apps/static/src/components/**/*.scss',
+
+            'sd_apps/static/src/xml/sd_apps_snippet.xml',
+            'sd_apps/static/src/snippets/**/*.js',
+        ],
     },
     'images': [
         'static/description/banner.png',
-        'static/description/theme_screenshot.png'
+        'static/description/theme_screenshot.png',
     ],
     # only loaded in demonstration mode
     'demo': [
@@ -51,3 +59,4 @@
     'license': 'LGPL-3',
 
 }
+# -*- coding: utf-8 -*-

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="sd_apps_snippet" name="Web Apps">
+        <section class="sd_apps_snippet pt40 pb40 bg-white" data-vcss="001"
+                 data-oe-shape-data="{'shape':'web_editor/Floats/03','flip':[]}">
+            <div class="sd_apps_box_area"></div>
+        </section>
+    </template>
+</odoo>

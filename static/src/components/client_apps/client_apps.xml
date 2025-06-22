@@ -3,7 +3,7 @@
     <t t-name="sd_apps.client_apps" owl="1">
         <div class="sd_apps_client_apps">
 <!--            <ClientNav nav="state.nav" onClick="onClick"/>-->
-            <div class="row mx-2 mx-sm-5 my-3">
+            <div class="row mx-2 mx-sm-5 my-3 justify-content-center">
                 <t t-foreach="state.data" t-as="card" t-key="card.id">
 <!--                    <ClientCard card="card" onClick="onClick"/>-->
 <!--                    <div t-att-href="card.link" t-att-target="card.target" class=" col p-0 m-sm-4 border border-danger"-->
