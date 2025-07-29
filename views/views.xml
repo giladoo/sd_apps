@@ -3,11 +3,6 @@
 
         <!-- ==================================================  sd_apps.SETTINGS ====================-->
 
-
-
-
-
-
         <record model="ir.ui.view" id="sd_apps_settings_list">
             <field name="name">sd_apps List</field>
             <field name="model">sd_apps.settings</field>
@@ -16,7 +11,7 @@
 <!--                    <field name="id"/>-->
 <!--                    <field name="priority"/>-->
                     <field name="sequence" widget="handle"/>
-                    <field name="image" widget="image" class="oe_avatar sd_apps_dash" groups="base.group_user"/>
+                    <field name="image" widget="image" class="oe_avatar sd_apps_dash"  groups="base.group_user"/>
                     <field name="name"/>
                     <field name="active_link" widget="boolean_toggle" />
                     <field name="link" />
