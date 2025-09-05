@@ -2,6 +2,19 @@
 <templates xml:space="preserve">
     <t t-name="sd_apps.client_apps" owl="1">
         <div class="sd_apps_client_apps">
+<!--        <section class=" sd_snippets_comments_slides bg-white " data-vcss="003">-->
+            <div class="container web_comments_text_slider_container d-none mt-2  border rounded-3">
+                <div class="row row-cols-auto">
+
+                    <div class="col ">
+                        <div class="col-12 comment_selector_keys fa fa-caret-up cursor-pointer"></div>
+                        <div class="col-12 comment_selector_keys fa fa-caret-down cursor-pointer"></div>
+                    </div>
+                    <div id="text-slider" class="col-11 comments_text_slider text-slider"> </div>
+                </div>
+
+            </div>
+<!--        </section>-->
 <!--            <ClientNav nav="state.nav" onClick="onClick"/>-->
             <div class="row mx-2 mx-sm-5 my-3 justify-content-center">
                 <t t-foreach="state.data" t-as="card" t-key="card.id">
